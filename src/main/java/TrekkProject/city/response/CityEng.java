@@ -1,4 +1,4 @@
-package trekk.trekk.city.response;
+package TrekkProject.city.response;
 
 import lombok.Data;
 

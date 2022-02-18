@@ -1,13 +1,13 @@
 package TrekkProject.city;
 
+import TrekkProject.city.response.CityEng;
+import TrekkProject.city.response.CityMar;
 import TrekkProject.state.State;
 import TrekkProject.state.StateRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import trekk.trekk.city.response.CityEng;
-import trekk.trekk.city.response.CityMar;
 
 import java.util.ArrayList;
 import java.util.List;
