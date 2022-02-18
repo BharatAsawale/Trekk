@@ -77,8 +77,16 @@ public class CityController {
     @GetMapping("/state/eng/{sid}")
     public ResponseEntity<?> findByIdEng(@PathVariable int sid){
         State state=stateRepo.findById(sid);
-        List<CityEng> cityEngs=cityRepo.findAllCitiesByState(state);
-        return new ResponseEntity<>(cityEngs,HttpStatus.OK);
+//        List<CityEng> cityEngs=cityRepo.findAllCitiesByState(state);
+        List<City> cityList=cityRepo.findAllCitiesByState(state);
+        List<CityEng> list=new ArrayList<>();
+        for(City city:cityList){
+            CityEng cityEng=new CityEng();
+            cityEng.setId(city.getId());
+            cityEng.setCity(city.getCityNameEn());
+            list.add(cityEng);
+        }
+        return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
     @GetMapping("/state/mar/{sid}")

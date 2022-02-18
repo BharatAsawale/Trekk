@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface CityRepo extends MongoRepository<City,Long> {
-    List<CityEng> findAllCitiesByState(State state);
+    List<City> findAllCitiesByState(State state);
     List<CityMar> findAllByState(State state);
     City findById(int id);
 
