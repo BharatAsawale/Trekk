@@ -67,11 +67,25 @@ public class CityController {
         return new ResponseEntity<>(cityRepo.findById(id),HttpStatus.OK);
     }
 
-    @GetMapping("/state/{sid}")
-    public ResponseEntity<?> findCitiesById(@PathVariable int sid){
+//    @GetMapping("/state/{sid}")
+//    public ResponseEntity<?> findCitiesById(@PathVariable int sid){
+//        State state=stateRepo.findById(sid);
+//        List<City> cities=cityRepo.findAllCitiesByState(state);
+//        return new ResponseEntity<>(cities,HttpStatus.OK);
+//    }
+
+    @GetMapping("/state/eng/{sid}")
+    public ResponseEntity<?> findByIdEng(@PathVariable int sid){
         State state=stateRepo.findById(sid);
-        List<City> cities=cityRepo.findAllCitiesByState(state);
-        return new ResponseEntity<>(cities,HttpStatus.OK);
+        List<CityEng> cityEngs=cityRepo.findAllCitiesByState(state);
+        return new ResponseEntity<>(cityEngs,HttpStatus.OK);
+    }
+
+    @GetMapping("/state/mar/{sid}")
+    public ResponseEntity<?> findByIdMar(@PathVariable int sid){
+        State state=stateRepo.findById(sid);
+        List<CityMar> cityMar=cityRepo.findAllByState(state);
+        return new ResponseEntity<>(cityMar,HttpStatus.OK);
     }
 
     @GetMapping("/city/addallcity")
