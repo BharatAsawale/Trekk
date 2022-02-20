@@ -77,6 +77,7 @@ public class FortController {
             fortResponse.setMapUrl(fort.getMapUrl());
             fortResponse.setTransportFacility(fort.getTransportFacility());
             fortResponse.setStayFacility(fort.getStayFacility());
+            fortResponse.setImg(fort.getImg());
             list.add(fortResponse);
         }
         return new ResponseEntity<>(list,HttpStatus.OK);
