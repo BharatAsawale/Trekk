@@ -55,7 +55,7 @@ public class FortController {
         fortResponse.setHeight(fort.getHeight());
         fortResponse.setHistory(fort.getHistory());
         fortResponse.setStayFacility(fort.getStayFacility());
-
+        fortResponse.setImg(fort.getImg());
         return new ResponseEntity<>(fortResponse,HttpStatus.OK);
     }
 
