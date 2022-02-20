@@ -45,6 +45,20 @@ public class FortController {
         return new ResponseEntity<>(fortRepo.findById(id),HttpStatus.OK);
     }
 
+    @GetMapping("/eng/{id}")
+    public ResponseEntity<?> findByIdEN(@PathVariable int id){
+        Fort fort=fortRepo.findById(id);
+        FortResponse fortResponse=new FortResponse();
+        fortResponse.setFortName(fort.getFortName());
+        fortResponse.setTypeOfFort(fort.getTypeOfFort());
+        fortResponse.setFeatures(fort.getFeatures());
+        fortResponse.setHeight(fort.getHeight());
+        fortResponse.setHistory(fort.getHistory());
+        fortResponse.setStayFacility(fort.getStayFacility());
+
+        return new ResponseEntity<>(fortResponse,HttpStatus.OK);
+    }
+
     @GetMapping("/city/eng/{id}")
     public ResponseEntity<?> findFortByCity(@PathVariable int id){
         City city=cityRepo.findById(id);
