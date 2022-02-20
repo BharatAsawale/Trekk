@@ -1,9 +1,9 @@
-package TrekkProject.Fort.response;
+package TrekkProject.Fort;
 
 import lombok.Data;
 
 @Data
-public class FortEng {
+public class FortResponse {
     private int id;
     private String fortName;
     private String history;
@@ -13,4 +13,5 @@ public class FortEng {
     private String typeOfFort;
     private String transportFacility;
     private String stayFacility;
+    private String img;
 }

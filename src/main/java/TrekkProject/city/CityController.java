@@ -1,7 +1,5 @@
 package TrekkProject.city;
 
-import TrekkProject.city.response.CityEng;
-import TrekkProject.city.response.CityMar;
 import TrekkProject.state.State;
 import TrekkProject.state.StateRepo;
 import lombok.RequiredArgsConstructor;
@@ -36,64 +34,39 @@ public class CityController {
         return new ResponseEntity<>(cityRepo.findAll(),HttpStatus.OK);
     }
 
-    @GetMapping("eng/all")
-    public ResponseEntity<?> allCities(){
-        List<City> list=cityRepo.findAll();
-        List<CityEng> list1=new ArrayList<>();
-        for(City city:list){
-            CityEng cityEng=new CityEng();
-            cityEng.setId(city.getId());
-            cityEng.setCity(city.getCityNameEn());
-            list1.add(cityEng);
-        }
-        return new ResponseEntity<>(list1,HttpStatus.OK);
-    }
-
-    @GetMapping("mar/all")
-    public ResponseEntity<?> allMarCities(){
-        List<City> list=cityRepo.findAll();
-        List<CityMar> list1=new ArrayList<>();
-        for(City city:list){
-            CityMar cityMar=new CityMar();
-            cityMar.setId(city.getId());
-            cityMar.setCity(city.getCityNameMr());
-            list1.add(cityMar);
-        }
-        return new ResponseEntity<>(list1,HttpStatus.OK);
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<City> findById(@PathVariable int id) {
         return new ResponseEntity<>(cityRepo.findById(id),HttpStatus.OK);
     }
 
-//    @GetMapping("/state/{sid}")
-//    public ResponseEntity<?> findCitiesById(@PathVariable int sid){
-//        State state=stateRepo.findById(sid);
-//        List<City> cities=cityRepo.findAllCitiesByState(state);
-//        return new ResponseEntity<>(cities,HttpStatus.OK);
-//    }
-
     @GetMapping("/state/eng/{sid}")
     public ResponseEntity<?> findByIdEng(@PathVariable int sid){
         State state=stateRepo.findById(sid);
-//        List<CityEng> cityEngs=cityRepo.findAllCitiesByState(state);
         List<City> cityList=cityRepo.findAllCitiesByState(state);
-        List<CityEng> list=new ArrayList<>();
+        List<CityResponse> list=new ArrayList<>();
         for(City city:cityList){
-            CityEng cityEng=new CityEng();
-            cityEng.setId(city.getId());
-            cityEng.setCity(city.getCityNameEn());
-            list.add(cityEng);
+            CityResponse cityResponse=new CityResponse();
+            cityResponse.setId(city.getId());
+            cityResponse.setCity(city.getCityNameEn());
+            cityResponse.setImg(city.getImg());
+            list.add(cityResponse);
         }
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
     @GetMapping("/state/mar/{sid}")
-    public ResponseEntity<?> findByIdMar(@PathVariable int sid){
+    public ResponseEntity<?> findByIdEngMr(@PathVariable int sid){
         State state=stateRepo.findById(sid);
-        List<CityMar> cityMar=cityRepo.findAllByState(state);
-        return new ResponseEntity<>(cityMar,HttpStatus.OK);
+        List<City> cityList=cityRepo.findAllCitiesByState(state);
+        List<CityResponse> list=new ArrayList<>();
+        for(City city:cityList){
+            CityResponse cityResponse=new CityResponse();
+            cityResponse.setId(city.getId());
+            cityResponse.setCity(city.getCityNameMr());
+            cityResponse.setImg(city.getImg());
+            list.add(cityResponse);
+        }
+        return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
     @GetMapping("/city/addallcity")

@@ -1,7 +1,5 @@
 package TrekkProject.Fort;
 
-import TrekkProject.Fort.response.FortEng;
-import TrekkProject.Fort.response.FortMar;
 import TrekkProject.city.City;
 import TrekkProject.city.CityRepo;
 import lombok.RequiredArgsConstructor;
@@ -47,50 +45,50 @@ public class FortController {
         return new ResponseEntity<>(fortRepo.findById(id),HttpStatus.OK);
     }
 
-    @GetMapping("/eng/city/{id}")
+    @GetMapping("/city/eng/{id}")
     public ResponseEntity<?> findFortByCity(@PathVariable int id){
         City city=cityRepo.findById(id);
         if(city==null)
             return ResponseEntity.badRequest().body("no data found for given city");
         List<Fort> fortList=fortRepo.findByCity(city);
-        List<FortEng> fortEngList=new ArrayList<>();
+        List<FortResponse> list=new ArrayList<>();
         for (Fort fort:fortList){
-            FortEng fortEng=new FortEng();
-            fortEng.setId(fort.getId());
-            fortEng.setFortName(fort.getFortName());
-            fortEng.setFeatures(fort.getFeatures());
-            fortEng.setTypeOfFort(fort.getTypeOfFort());
-            fortEng.setHeight(fort.getHeight());
-            fortEng.setHistory(fort.getHistory());
-            fortEng.setMapUrl(fort.getMapUrl());
-            fortEng.setTransportFacility(fort.getTransportFacility());
-            fortEng.setStayFacility(fort.getStayFacility());
+            FortResponse fortResponse=new FortResponse();
+            fortResponse.setId(fort.getId());
+            fortResponse.setFortName(fort.getFortName());
+            fortResponse.setFeatures(fort.getFeatures());
+            fortResponse.setTypeOfFort(fort.getTypeOfFort());
+            fortResponse.setHeight(fort.getHeight());
+            fortResponse.setHistory(fort.getHistory());
+            fortResponse.setMapUrl(fort.getMapUrl());
+            fortResponse.setTransportFacility(fort.getTransportFacility());
+            fortResponse.setStayFacility(fort.getStayFacility());
+            list.add(fortResponse);
         }
-        return new ResponseEntity<>(fortEngList,HttpStatus.OK);
+        return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
-    @GetMapping("/mar/city/{id}")
-    public ResponseEntity<?> findFortMar(@PathVariable int id){
+    @GetMapping("/city/mar/{id}")
+    public ResponseEntity<?> findFortByCityMr(@PathVariable int id){
         City city=cityRepo.findById(id);
-        if(city==null){
-            return ResponseEntity.badRequest().body("City not found");
-        }
+        if(city==null)
+            return ResponseEntity.badRequest().body("no data found for given city");
         List<Fort> fortList=fortRepo.findByCity(city);
-        List<FortMar> fortMarList=new ArrayList<>();
-        for(Fort fort:fortList){
-            FortMar fortMar=new FortMar();
-            fortMar.setId(fort.getId());
-            fortMar.setFortNameMr(fort.getFortNameMr());
-            fortMar.setFeaturesMr(fort.getFeaturesMr());
-            fortMar.setTypeOfFortMr(fort.getTypeOfFortMr());
-            fortMar.setHeightMr(fort.getHeightMr());
-            fortMar.setHistoryMr(fort.getHistoryMr());
-            fortMar.setMapUrlMr(fort.getMapUrlMr());
-            fortMar.setTransportFacilityMr(fort.getTransportFacilityMr());
-            fortMar.setStayFacilityMr(fort.getStayFacilityMr());
-
-            fortMarList.add(fortMar);
+        List<FortResponse> list=new ArrayList<>();
+        for (Fort fort:fortList){
+            FortResponse fortResponse=new FortResponse();
+            fortResponse.setId(fort.getId());
+            fortResponse.setFortName(fort.getFortNameMr());
+            fortResponse.setFeatures(fort.getFeaturesMr());
+            fortResponse.setTypeOfFort(fort.getTypeOfFortMr());
+            fortResponse.setHeight(fort.getHeightMr());
+            fortResponse.setHistory(fort.getHistoryMr());
+            fortResponse.setTransportFacility(fort.getTransportFacilityMr());
+            fortResponse.setStayFacility(fort.getStayFacilityMr());
+            fortResponse.setImg(fort.getImg());
+            fortResponse.setMapUrl(fort.getMapUrl());
+            list.add(fortResponse);
         }
-        return new ResponseEntity<>(fortMarList,HttpStatus.OK);
+        return new ResponseEntity<>(list,HttpStatus.OK);
     }
 }

@@ -22,6 +22,8 @@ public class City {
     private String cityNameEn;
     @Column(nullable = false)
     private String cityNameMr;
+    @Column(nullable = false)
+    private String img;
     @DocumentReference(lazy=true)
     private State state;
 }

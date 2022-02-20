@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import javax.persistence.Id;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -21,7 +22,6 @@ public class Fort {
     private String history;
     private String features;
     private String height;
-    private String mapUrl;
     private String typeOfFort;
     private String transportFacility;
     private String stayFacility;
@@ -30,8 +30,11 @@ public class Fort {
     private String historyMr;
     private String featuresMr;
     private String heightMr;
-    private String mapUrlMr;
     private String typeOfFortMr;
     private String transportFacilityMr;
     private String stayFacilityMr;
+
+    private String mapUrl;
+    private String img;
+    private Set<String> likes;
 }

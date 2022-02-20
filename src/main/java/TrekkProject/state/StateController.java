@@ -4,8 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import trekk.trekk.state.response.StateEng;
-import trekk.trekk.state.response.StateMar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,28 +25,28 @@ public class StateController {
     @GetMapping("eng/all")
     public ResponseEntity<?> allEng(){
         List<State> list=stateRepo.findAll();
-        List<StateEng> stateEngs=new ArrayList<>();
+        List<StateResponse> responses=new ArrayList<>();
         for(State state:list){
-            StateEng stateEng=new StateEng();
-            stateEng.setId(state.getId());
-            stateEng.setState(state.getStateNameEn());
-            stateEng.setImg(state.getImg());
-            stateEngs.add(stateEng);
+            StateResponse stateResponse=new StateResponse();
+            stateResponse.setId(state.getId());
+            stateResponse.setState(state.getStateNameEn());
+            stateResponse.setImg(state.getImg());
+            responses.add(stateResponse);
         }
-        return new ResponseEntity<>(stateEngs,HttpStatus.OK);
+        return new ResponseEntity<>(responses,HttpStatus.OK);
     }
 
     @GetMapping("/mar/all")
-    public ResponseEntity<?> allMar(){
-        List<State> list=stateRepo.findAll();
-        List<StateMar> stateMars=new ArrayList<>();
-        for(State state:list){
-            StateMar stateMar=new StateMar();
-            stateMar.setId(state.getId());
-            stateMar.setState(state.getStateNameMr());
-            stateMar.setImg(state.getImg());
-            stateMars.add(stateMar);
+    public ResponseEntity<?> allMar() {
+        List<State> list = stateRepo.findAll();
+        List<StateResponse> responses = new ArrayList<>();
+        for (State state : list) {
+            StateResponse stateResponse = new StateResponse();
+            stateResponse.setId(state.getId());
+            stateResponse.setState(state.getStateNameMr());
+            stateResponse.setImg(state.getImg());
+            responses.add(stateResponse);
         }
-        return new ResponseEntity<>(stateMars,HttpStatus.OK);
+        return new ResponseEntity<>(responses, HttpStatus.OK);
     }
 }

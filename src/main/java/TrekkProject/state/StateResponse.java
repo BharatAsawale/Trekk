@@ -1,9 +1,9 @@
-package trekk.trekk.state.response;
+package TrekkProject.state;
 
 import lombok.Data;
 
 @Data
-public class StateMar {
+public class StateResponse {
     private int id;
     private String state;
     private String img;
