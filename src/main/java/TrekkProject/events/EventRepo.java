@@ -1,4 +1,4 @@
-package TrekkProject.event;
+package TrekkProject.events;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

@@ -1,4 +1,4 @@
-package TrekkProject.event;
+package TrekkProject.events;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -33,4 +33,5 @@ public class EventController {
             return ResponseEntity.badRequest().body("no data found..");
         return new ResponseEntity<>(event,HttpStatus.OK);
     }
+
 }

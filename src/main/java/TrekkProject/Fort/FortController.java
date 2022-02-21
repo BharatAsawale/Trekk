@@ -56,6 +56,22 @@ public class FortController {
         fortResponse.setHistory(fort.getHistory());
         fortResponse.setStayFacility(fort.getStayFacility());
         fortResponse.setImg(fort.getImg());
+        fortResponse.setMapUrl(fort.getMapUrl());
+        return new ResponseEntity<>(fortResponse,HttpStatus.OK);
+    }
+
+    @GetMapping("/mar/{id}")
+    public ResponseEntity<?> findByIdMR(@PathVariable int id){
+        Fort fort=fortRepo.findById(id);
+        FortResponse fortResponse=new FortResponse();
+        fortResponse.setFortName(fort.getFortNameMr());
+        fortResponse.setTypeOfFort(fort.getTypeOfFortMr());
+        fortResponse.setFeatures(fort.getFeaturesMr());
+        fortResponse.setHeight(fort.getHeightMr());
+        fortResponse.setHistory(fort.getHistoryMr());
+        fortResponse.setStayFacility(fort.getStayFacilityMr());
+        fortResponse.setImg(fort.getImg());
+        fortResponse.setMapUrl(fort.getMapUrl());
         return new ResponseEntity<>(fortResponse,HttpStatus.OK);
     }
 
@@ -65,18 +81,11 @@ public class FortController {
         if(city==null)
             return ResponseEntity.badRequest().body("no data found for given city");
         List<Fort> fortList=fortRepo.findByCity(city);
-        List<FortResponse> list=new ArrayList<>();
+        List<FortResponseList> list=new ArrayList<>();
         for (Fort fort:fortList){
-            FortResponse fortResponse=new FortResponse();
+            FortResponseList fortResponse=new FortResponseList();
             fortResponse.setId(fort.getId());
             fortResponse.setFortName(fort.getFortName());
-            fortResponse.setFeatures(fort.getFeatures());
-            fortResponse.setTypeOfFort(fort.getTypeOfFort());
-            fortResponse.setHeight(fort.getHeight());
-            fortResponse.setHistory(fort.getHistory());
-            fortResponse.setMapUrl(fort.getMapUrl());
-            fortResponse.setTransportFacility(fort.getTransportFacility());
-            fortResponse.setStayFacility(fort.getStayFacility());
             fortResponse.setImg(fort.getImg());
             list.add(fortResponse);
         }
@@ -89,19 +98,12 @@ public class FortController {
         if(city==null)
             return ResponseEntity.badRequest().body("no data found for given city");
         List<Fort> fortList=fortRepo.findByCity(city);
-        List<FortResponse> list=new ArrayList<>();
+        List<FortResponseList> list=new ArrayList<>();
         for (Fort fort:fortList){
-            FortResponse fortResponse=new FortResponse();
+            FortResponseList fortResponse=new FortResponseList();
             fortResponse.setId(fort.getId());
             fortResponse.setFortName(fort.getFortNameMr());
-            fortResponse.setFeatures(fort.getFeaturesMr());
-            fortResponse.setTypeOfFort(fort.getTypeOfFortMr());
-            fortResponse.setHeight(fort.getHeightMr());
-            fortResponse.setHistory(fort.getHistoryMr());
-            fortResponse.setTransportFacility(fort.getTransportFacilityMr());
-            fortResponse.setStayFacility(fort.getStayFacilityMr());
             fortResponse.setImg(fort.getImg());
-            fortResponse.setMapUrl(fort.getMapUrl());
             list.add(fortResponse);
         }
         return new ResponseEntity<>(list,HttpStatus.OK);

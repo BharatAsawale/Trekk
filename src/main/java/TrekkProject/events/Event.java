@@ -1,8 +1,7 @@
-package TrekkProject.event;
+package TrekkProject.events;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalTime;
@@ -11,7 +10,6 @@ import java.util.Date;
 @Data
 @Document(collection = "event")
 public class Event {
-    @Id
     private int id;
     private String organizer;
     private String details;

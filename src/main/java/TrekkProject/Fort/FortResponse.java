@@ -9,9 +9,9 @@ public class FortResponse {
     private String history;
     private String features;
     private String height;
-    private String mapUrl;
     private String typeOfFort;
     private String transportFacility;
     private String stayFacility;
+    private String mapUrl;
     private String img;
 }
