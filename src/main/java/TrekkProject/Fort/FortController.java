@@ -8,7 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequiredArgsConstructor
@@ -108,4 +110,22 @@ public class FortController {
         }
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
+
+    @GetMapping("likes/{fid}/{userId}")
+    public ResponseEntity<?> addLikes(@PathVariable int fid, @PathVariable String userId){
+        Fort fort=fortRepo.findById(fid);
+        if(fort==null)
+            return ResponseEntity.badRequest().body("Fort not found");
+        Set<String> set=fort.getLikes();
+        if(set==null){
+            Set<String> set1=new HashSet<>();
+            set1.add(userId);
+            fort.setLikes(set1);
+        }
+        else
+            set.add(userId);
+        fortRepo.save(fort);
+        return new ResponseEntity<>(fort.getLikes(),HttpStatus.OK);
+    }
+
 }
