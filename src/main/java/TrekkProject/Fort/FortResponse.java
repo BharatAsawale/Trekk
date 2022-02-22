@@ -13,5 +13,5 @@ public class FortResponse {
     private String transportFacility;
     private String stayFacility;
     private String mapUrl;
-    private String img;
+    private String img[];
 }

@@ -25,6 +25,7 @@ public class Fort {
     private String typeOfFort;
     private String transportFacility;
     private String stayFacility;
+    private String nearByPlaces;
     //    marathi fields
     private String fortNameMr;
     private String historyMr;
@@ -33,8 +34,9 @@ public class Fort {
     private String typeOfFortMr;
     private String transportFacilityMr;
     private String stayFacilityMr;
+    private String nearByPlacesMr;
 
     private String mapUrl;
-    private String img;
+    private String img[];
     private Set<String> likes;
 }
