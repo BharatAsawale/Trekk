@@ -51,6 +51,7 @@ public class FortController {
     public ResponseEntity<?> findByIdEN(@PathVariable int id){
         Fort fort=fortRepo.findById(id);
         FortResponse fortResponse=new FortResponse();
+        fortResponse.setId(fort.getId());
         fortResponse.setFortName(fort.getFortName());
         fortResponse.setTypeOfFort(fort.getTypeOfFort());
         fortResponse.setFeatures(fort.getFeatures());
@@ -66,6 +67,7 @@ public class FortController {
     public ResponseEntity<?> findByIdMR(@PathVariable int id){
         Fort fort=fortRepo.findById(id);
         FortResponse fortResponse=new FortResponse();
+        fortResponse.setId(fort.getId());
         fortResponse.setFortName(fort.getFortNameMr());
         fortResponse.setTypeOfFort(fort.getTypeOfFortMr());
         fortResponse.setFeatures(fort.getFeaturesMr());
