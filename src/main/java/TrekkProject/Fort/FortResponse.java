@@ -2,6 +2,8 @@ package TrekkProject.Fort;
 
 import lombok.Data;
 
+import java.util.Set;
+
 @Data
 public class FortResponse {
     private int id;
@@ -14,4 +16,5 @@ public class FortResponse {
     private String stayFacility;
     private String mapUrl;
     private String img[];
+    private Set<String> likes;
 }

@@ -60,6 +60,7 @@ public class FortController {
         fortResponse.setStayFacility(fort.getStayFacility());
         fortResponse.setImg(fort.getImg());
         fortResponse.setMapUrl(fort.getMapUrl());
+        fortResponse.setLikes(fort.getLikes());
         return new ResponseEntity<>(fortResponse,HttpStatus.OK);
     }
 
@@ -76,6 +77,7 @@ public class FortController {
         fortResponse.setStayFacility(fort.getStayFacilityMr());
         fortResponse.setImg(fort.getImg());
         fortResponse.setMapUrl(fort.getMapUrl());
+        fortResponse.setLikes(fort.getLikes());
         return new ResponseEntity<>(fortResponse,HttpStatus.OK);
     }
 
