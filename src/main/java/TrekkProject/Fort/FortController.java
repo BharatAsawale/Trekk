@@ -83,19 +83,22 @@ public class FortController {
 
     @GetMapping("/city/eng/{id}")
     public ResponseEntity<?> findFortByCity(@PathVariable int id){
-        City city=cityRepo.findById(id);
-        if(city==null)
-            return ResponseEntity.badRequest().body("no data found for given city");
-        List<Fort> fortList=fortRepo.findByCity(city);
-        List<FortResponseList> list=new ArrayList<>();
-        for (Fort fort:fortList){
-            FortResponseList fortResponse=new FortResponseList();
-            fortResponse.setId(fort.getId());
-            fortResponse.setFortName(fort.getFortName());
-            fortResponse.setImg(fort.getImg());
-            list.add(fortResponse);
-        }
-        return new ResponseEntity<>(list,HttpStatus.OK);
+            City city=cityRepo.findById(id);
+            if(city==null)
+                return ResponseEntity.badRequest().body("no data found for given city");
+            List<Fort> fortList = fortRepo.findByCity(city);
+            List<FortResponseList> list=new ArrayList<>();
+            for (Fort fort:fortList){
+                FortResponseList fortResponse=new FortResponseList();
+                fortResponse.setId(fort.getId());
+                fortResponse.setFortName(fort.getFortName());
+//                if(fort.getImg()==null)
+//                    fortResponse.setImg(null);
+//                else
+//                    fortResponse.setImg(fort.getImg());
+                list.add(fortResponse);
+            }
+            return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
     @GetMapping("/city/mar/{id}")
